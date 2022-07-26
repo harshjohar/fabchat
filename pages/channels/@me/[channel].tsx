@@ -2,6 +2,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
+import PageLayout from "../../../components/Layout/PageLayout";
 import { selectUser } from "../../../redux/user/userSlice";
 import { redirectToLogin } from "../../../utils/functions";
 
@@ -15,12 +16,14 @@ function Channel() {
     }, [user]);
     const title = router.query["channel"];
     return (
-        <div>
-            <Head>
-                <title>{title}</title>
-            </Head>
-            <p>{title}</p>
-        </div>
+        <PageLayout>
+            <div>
+                <Head>
+                    <title>{title}</title>
+                </Head>
+                <p>{title}</p>
+            </div>
+        </PageLayout>
     );
 }
 
