@@ -6,7 +6,7 @@ const Home: NextPage = () => {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2">
       <Head>
-        <title>FabChat</title>
+        <title>FabChat | Your place to hangout</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -17,8 +17,8 @@ const Home: NextPage = () => {
             FabChat!
           </a>
         </h1>
-        <Link href={"/channels/@me"}>
-        <button>Get IN!</button>
+        <Link href={"/app"}>
+          <button>Get IN!</button>
         </Link>
       </main>
     </div>

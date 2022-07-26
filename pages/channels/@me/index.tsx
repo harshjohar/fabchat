@@ -1,8 +1,13 @@
+import Head from 'next/head'
 import React from 'react'
 
 function index() {
   return (
-    <div>Homepage</div>
+    <div>
+        <Head>
+            <title>Fabchat</title>
+        </Head>
+    </div>
   )
 }
 
