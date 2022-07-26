@@ -6,10 +6,11 @@ import { db } from "../../serverless/firebase";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { Server } from "../../typings/Server";
 import { useRouter } from "next/router";
-
+import img from "../../public/images/fabchat.png";
 function ServerBar() {
     const user = useSelector(selectUser);
     const [servers] = useCollection(collection(db, "servers"));
+    const router = useRouter();
     const addServer = () => {
         const serverName = prompt("Enter server name");
         if (!serverName) return;
@@ -41,9 +42,23 @@ function ServerBar() {
                 alert("Internal Server Error");
             });
     };
+    const navigate = () => {
+        router.push(`/channels/@me`);
+    };
     return (
         <div className="h-full w-full bg-blue-300 py-3 space-y-3">
-            {servers?.docs.map((server) => {
+            <div
+                className="h-[3.5rem] w-[3.5rem] rounded-full hover:rounded-xl cursor-pointer mx-auto"
+                onClick={navigate}
+            >
+                <img
+                    src="/images/fabchat.png"
+                    alt={"fabchat"}
+                    className="h-full w-full object-cover rounded-full hover:rounded-xl cursor-pointer"
+                />
+            </div>
+            <div className="w-[69%] h-[1.5px] bg-gray-200 mx-auto" />
+            {servers?.docs.map((server, i) => {
                 const serverData = server.data();
                 const props = {
                     id: server.id,
@@ -55,7 +70,7 @@ function ServerBar() {
                     photo: serverData["photo"] as String,
                     activeChannel: serverData["activeChannel"] as String,
                 };
-                return <ServerIcon serverData={props as Server} />;
+                return <ServerIcon serverData={props as Server} key={i} />;
             })}
             <div
                 onClick={addServer}

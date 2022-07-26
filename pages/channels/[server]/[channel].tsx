@@ -17,13 +17,20 @@ function Channel() {
             redirectToLogin(router);
         }
     }, [user]);
-    const server = router.query["server"];
-    const channel = router.query["channel"];
-
+    const server = router.query["server"] as string;
+    const channel = router.query["channel"] as string;
+    
+    console.log("server", server, "channel", channel);
     const [channelDoc] = useDocument(
         doc(db, "servers", server as string, "channels", channel as string)
     );
     const channelData = channelDoc?.data();
+    const docu = doc(db, "servers", server);
+    console.log(docu.id);
+
+    useEffect(()=> {
+
+    }, [server, channel])
     return (
         <PageLayout>
             <div className="h-full w-full">
@@ -32,6 +39,10 @@ function Channel() {
                         {channelData ? channelData["name"] : "Discord"}
                     </title>
                 </Head>
+
+                <div>
+                    
+                </div>
             </div>
         </PageLayout>
     );
