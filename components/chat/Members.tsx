@@ -13,7 +13,7 @@ function Members() {
 
         // codes using router.query
         setServer(router.query["server"] as string)
-    }, [router.isReady]);
+    }, [router.isReady, router.query["server"], router.query["channel"]]);
     const [serverData] = useDocument(doc(db, "servers", server || "a"));
     const members = serverData?.data()?.members;
 

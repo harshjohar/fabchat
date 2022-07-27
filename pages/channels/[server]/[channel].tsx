@@ -22,8 +22,7 @@ function Channel() {
         if (!router.isReady) return;
         setServer(router.query["server"] as string);
         setChannel(router.query["channel"] as string);
-    }, [router.isReady]);
-
+    }, [router.isReady, router.query["server"], router.query["channel"]]);
     useEffect(() => {
         if (!user.email) {
             redirectToLogin(router);
