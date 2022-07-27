@@ -41,7 +41,7 @@ function InputMessage({ channelName }: { channelName: string }) {
                 timestamp: serverTimestamp(),
                 displayName: user?.displayName,
                 photoURL: user?.photoURL,
-                image: "",
+                image: imageToPost ? "/images/dummy.jpeg" : "",
             }
         )
             .then((addedDoc) => {
