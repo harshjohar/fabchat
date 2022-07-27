@@ -5,9 +5,6 @@ import { useCollection, useDocument } from "react-firebase-hooks/firestore";
 import { db } from "../../serverless/firebase";
 import { Channel } from "../../typings/Channel";
 import { GiSpeaker } from "react-icons/gi";
-import FriendsBar from "./FriendsBar";
-import { useSelector } from "react-redux";
-import { selectUser } from "../../redux/user/userSlice";
 import UserBar from "./UserBar";
 
 function ChannelBar() {
@@ -15,7 +12,6 @@ function ChannelBar() {
     const [server, setServer] = useState("");
     useEffect(() => {
         if (!router.isReady) return;
-        // codes using router.query
         setServer(router.query["server"] as string);
     }, [router.isReady, router.query["server"], router.query["channel"]]
     );
@@ -36,9 +32,13 @@ function ChannelBar() {
             alert("Channel created");
         });
     };
+
+    const openSettings = () => {
+        router.push(`/channels/${server}/settings`)
+    }
     return (
         <div className="h-full w-full bg-pink-500 relative">
-            <p className="px-3 py-4 shadow-xl font-bold cursor-pointer hover:bg-pink-600 relative">
+            <p className="px-3 py-4 shadow-xl font-bold cursor-pointer hover:bg-pink-600 relative" onClick={openSettings}>
                 {serverDoc?.data()?.["name"] as string}
                 <span
                     onClick={addChannel}

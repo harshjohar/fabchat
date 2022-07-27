@@ -32,7 +32,7 @@ function ServerBar() {
             description: "",
             community: false,
             owner: user.uid,
-            photo: "https://cdn.britannica.com/61/103761-050-0174C1D5/Angelina-Jolie-Hollywood.jpg?w=400&h=300&c=crop",
+            photo: null,
             members: [user.uid],
         })
             .then((serverDoc) => {
@@ -107,12 +107,15 @@ function ServerIcon({ serverData }: { serverData: Server }) {
             className="h-[3.5rem] w-[3.5rem] rounded-full hover:rounded-xl cursor-pointer mx-auto"
             onClick={navigate}
         >
-            {/* <img
-                src={serverData.photo as string}
-                alt={serverData.name as string}
-                className="h-full w-full object-cover rounded-full hover:rounded-xl cursor-pointer"
-            /> */}
-            <ServerDp name={serverData.name} />
+            {serverData.photo ? (
+                <img
+                    src={serverData.photo as string}
+                    alt={serverData.name as string}
+                    className="h-full w-full object-cover rounded-full hover:rounded-xl cursor-pointer"
+                />
+            ) : (
+                <ServerDp name={serverData.name} />
+            )}
         </div>
     );
 }

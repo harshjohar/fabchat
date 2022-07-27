@@ -4,14 +4,14 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useDocument } from "react-firebase-hooks/firestore";
 import { useSelector } from "react-redux";
-import PageLayout from "../../../components/Layout/PageLayout";
-import { selectUser } from "../../../redux/user/userSlice";
-import { db } from "../../../serverless/firebase";
-import { redirectToLogin } from "../../../utils/functions";
+import PageLayout from "../../../../components/Layout/PageLayout";
+import { selectUser } from "../../../../redux/user/userSlice";
+import { db } from "../../../../serverless/firebase";
+import { redirectToLogin } from "../../../../utils/functions";
 import { BiHelpCircle } from "react-icons/bi";
-import InputMessage from "../../../components/chat/InputMessage";
-import Messages from "../../../components/chat/Messages";
-import Members from "../../../components/chat/Members";
+import InputMessage from "../../../../components/chat/InputMessage";
+import Messages from "../../../../components/chat/Messages";
+import Members from "../../../../components/chat/Members";
 
 function Channel() {
     const user = useSelector(selectUser);
@@ -47,7 +47,7 @@ function Channel() {
                 </Head>
 
                 <div className="bg-red-400 h-full w-3/4 relative">
-                    <p className="px-3 py-3 shadow-xl font-semibold text-blue-900 cursor-pointer flex items-center">
+                    <p className="px-3 py-3 shadow-3xl font-semibold text-blue-900 cursor-pointer flex items-center">
                         <span className="mr-2 text-2xl">#</span>
                         {channelData?.["name"]}
                     </p>
