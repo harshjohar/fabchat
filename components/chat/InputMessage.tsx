@@ -16,7 +16,6 @@ function InputMessage({ channelName }: { channelName: string }) {
     const [user] = useAuthState(auth);
     const sendMessage = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log("first");
         if (message.length < 1) return;
         const msg = message;
         setMessage("");
@@ -33,7 +32,7 @@ function InputMessage({ channelName }: { channelName: string }) {
         ).catch(() => alert("error occured"));
     };
     return (
-        <div className="w-full bg-pink-400 absolute bottom-10 flex justify-center">
+        <div className="w-full bg-pink-400 absolute bottom-5 flex justify-center">
             <form className="w-full" onSubmit={(e) => sendMessage(e)}>
                 <input
                     type="text"

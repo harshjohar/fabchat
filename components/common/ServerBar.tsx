@@ -1,4 +1,4 @@
-import { addDoc, collection, doc, setDoc } from "firebase/firestore";
+import { addDoc, collection, doc, query, setDoc, where } from "firebase/firestore";
 import React from "react";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../redux/user/userSlice";
@@ -6,10 +6,10 @@ import { db } from "../../serverless/firebase";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { Server } from "../../typings/Server";
 import { useRouter } from "next/router";
-import img from "../../public/images/fabchat.png";
+
 function ServerBar() {
     const user = useSelector(selectUser);
-    const [servers] = useCollection(collection(db, "servers"));
+    const [servers] = useCollection(query(collection(db, "servers"), where('members', 'array-contains', user.uid)));
     const router = useRouter();
     const addServer = () => {
         const serverName = prompt("Enter server name");

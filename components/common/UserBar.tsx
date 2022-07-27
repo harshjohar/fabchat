@@ -13,7 +13,7 @@ function UserBar() {
                     className="rounded-full h-12 w-12 cursor-pointer hover:opacity-90"
                 />
                 <div>
-                    <p className="font-bold text-green-900 truncate">
+                    <p className="font-bold text-white truncate">
                         {user.displayName as string}
                     </p>
                     <p>Online</p>

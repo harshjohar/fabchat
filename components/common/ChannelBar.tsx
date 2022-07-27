@@ -1,6 +1,6 @@
 import { addDoc, collection, doc } from "firebase/firestore";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useCollection, useDocument } from "react-firebase-hooks/firestore";
 import { db } from "../../serverless/firebase";
 import { Channel } from "../../typings/Channel";
@@ -12,19 +12,22 @@ import UserBar from "./UserBar";
 
 function ChannelBar() {
     const router = useRouter();
-    const server = router.query["server"] as string;
-    const user = useSelector(selectUser);
-    if (!server) return <FriendsBar />;
+    const [server, setServer] = useState("");
+    useEffect(() => {
+        if (!router.isReady) return;
+        // codes using router.query
+        setServer(router.query["server"] as string);
+    }, [router.isReady]);
 
-    const [serverDoc] = useDocument(doc(db, "servers", server));
+    const [serverDoc] = useDocument(doc(db, "servers", server || "a"));
     const [channelDocs] = useCollection(
-        collection(db, "servers", server, "channels")
+        collection(db, "servers", server || "a", "channels")
     );
     const channels = channelDocs?.docs;
 
     const addChannel = () => {
         const name = prompt("Enter name of channel");
-        addDoc(collection(db, "servers", server, "channels"), {
+        addDoc(collection(db, "servers", server || "a", "channels"), {
             name,
             type: "text",
             description: "",
@@ -52,7 +55,7 @@ function ChannelBar() {
                         description: data["description"],
                         id: channel.id,
                     };
-                    return <ChannelIcon channel={props} />;
+                    return <ChannelIcon channel={props} key={props.id} />;
                 })}
             </div>
 
@@ -65,7 +68,13 @@ export default ChannelBar;
 
 function ChannelIcon({ channel }: { channel: Channel }) {
     const router = useRouter();
-    const server = router.query["server"] as string;
+    const [server, setServer] = useState("");
+    useEffect(() => {
+        if (!router.isReady) return;
+        // codes using router.query
+        setServer(router.query["server"] as string);
+    }, [router.isReady]);
+
     const toggleChannel = () => {
         router.push(`/channels/${server}/${channel.id}`);
     };
@@ -74,7 +83,7 @@ function ChannelIcon({ channel }: { channel: Channel }) {
             className="cursor-pointer hover:bg-pink-400 rounded-lg px-2 py-1"
             onClick={toggleChannel}
         >
-            <p className="text-base">
+            <div className="text-base">
                 {channel.type === "text" ? (
                     <p className="fomt-semibold flex items-center">
                         <span className="mr-4 font-bold text-lg">#</span>
@@ -83,7 +92,7 @@ function ChannelIcon({ channel }: { channel: Channel }) {
                 ) : (
                     <GiSpeaker />
                 )}
-            </p>
+            </div>
         </div>
     );
 }
