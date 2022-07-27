@@ -9,7 +9,7 @@ interface message {
 
 export const Message = (props: message) => {
     return (
-        <div className="flex hover:bg-discord-selectedOption">
+        <div className="flex hover:bg-blue-400">
             <div className="flex flex-col items-center justify-start p-2 cursor-pointer">
                 {props.photoUrl ? (
                     <img

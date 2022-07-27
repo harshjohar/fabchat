@@ -47,7 +47,7 @@ function ChannelBar() {
                     +
                 </span>
             </p>
-            <div className="mt-3 px-3 space-y-3">
+            <div className="mt-3 px-3 space-y-2">
                 {channels?.map((channel) => {
                     const data = channel.data();
                     const props = {

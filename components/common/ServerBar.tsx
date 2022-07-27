@@ -1,4 +1,11 @@
-import { addDoc, collection, doc, query, setDoc, where } from "firebase/firestore";
+import {
+    addDoc,
+    collection,
+    doc,
+    query,
+    setDoc,
+    where,
+} from "firebase/firestore";
 import React from "react";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../redux/user/userSlice";
@@ -6,10 +13,16 @@ import { db } from "../../serverless/firebase";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { Server } from "../../typings/Server";
 import { useRouter } from "next/router";
+import { ServerDp } from "./UserDp";
 
 function ServerBar() {
     const user = useSelector(selectUser);
-    const [servers] = useCollection(query(collection(db, "servers"), where('members', 'array-contains', user.uid)));
+    const [servers] = useCollection(
+        query(
+            collection(db, "servers"),
+            where("members", "array-contains", user.uid)
+        )
+    );
     const router = useRouter();
     const addServer = () => {
         const serverName = prompt("Enter server name");
@@ -94,11 +107,12 @@ function ServerIcon({ serverData }: { serverData: Server }) {
             className="h-[3.5rem] w-[3.5rem] rounded-full hover:rounded-xl cursor-pointer mx-auto"
             onClick={navigate}
         >
-            <img
+            {/* <img
                 src={serverData.photo as string}
                 alt={serverData.name as string}
                 className="h-full w-full object-cover rounded-full hover:rounded-xl cursor-pointer"
-            />
+            /> */}
+            <ServerDp name={serverData.name} />
         </div>
     );
 }
