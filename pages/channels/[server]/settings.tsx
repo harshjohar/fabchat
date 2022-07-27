@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 import React, { FormEvent, useEffect, useRef, useState } from "react";
 import { MdAddPhotoAlternate, MdDelete } from "react-icons/md";
 import { db, storage } from "../../../serverless/firebase";
-import { AiFillCloseCircle } from "react-icons/ai";
+import { AiFillCloseCircle, AiOutlineClose } from "react-icons/ai";
 import { useDocument } from "react-firebase-hooks/firestore";
 import Head from "next/head";
 import Members from "../../../components/chat/Members";
@@ -101,6 +101,27 @@ function settings() {
         if (serverName.length < 1 && !imageToPost) return;
         const img = imageToPost;
 
+        if (serverName.length < 1) {
+            if (imageToPost) {
+                const storageRef = ref(storage, `servers/${serverDoc?.id}`);
+                uploadString(storageRef, img, "data_url").then(() => {
+                    getDownloadURL(
+                        ref(storage, `servers/${serverDoc?.id}`)
+                    ).then((url) => {
+                        setDoc(
+                            doc(db, "servers", server || "a"),
+                            {
+                                photo: url,
+                            },
+                            { merge: true }
+                        )
+                            .then(() => alert("updated!"))
+                            .catch(() => alert("error occured"));
+                    });
+                });
+            }
+            return;
+        }
         setDoc(
             doc(db, "servers", server || "a"),
             {
@@ -177,6 +198,10 @@ function settings() {
         );
     }
 
+    const removeImage = () => {
+        setImageToPost(null);
+    };
+
     return (
         <div className="h-screen w-screen overflow-hidden flex bg-yellow-100 justify-end relative">
             <Head>
@@ -224,23 +249,39 @@ function settings() {
                         </h1>
                         <form className="w-full" onSubmit={editServer}>
                             <div className="flex w-full space-x-6">
-                                <div
-                                    className="w-32 h-32 relative"
-                                    onClick={() =>
-                                        fileRef
-                                            ? fileRef.current?.click()
-                                            : console.log("first")
-                                    }
-                                >
-                                    <img
-                                        src={serverImage}
-                                        alt={serverData?.["name"]}
-                                        className="w-full h-full object-cover cursor-pointer hover:opacity-70 rounded-full "
-                                    />
-                                    <span className="absolute top-0 right-0 text-4xl text-pink-400">
-                                        <MdAddPhotoAlternate />
-                                    </span>
-                                </div>
+                                {imageToPost ? (
+                                    <div className="relative h-32 w-32">
+                                        <span className="absolute top-0 right-0 text-4xl text-pink-400">
+                                            <AiOutlineClose
+                                                onClick={removeImage}
+                                                className="cursor-pointer text-white"
+                                            />
+                                        </span>
+                                        <img
+                                            src={imageToPost}
+                                            alt="img"
+                                            className="w-full h-full object-cover cursor-pointer hover:opacity-70 rounded-full "
+                                        />
+                                    </div>
+                                ) : (
+                                    <div
+                                        className="w-32 h-32 relative"
+                                        onClick={() =>
+                                            fileRef
+                                                ? fileRef.current?.click()
+                                                : console.log("first")
+                                        }
+                                    >
+                                        <img
+                                            src={serverImage}
+                                            alt={serverData?.["name"]}
+                                            className="w-full h-full object-cover cursor-pointer hover:opacity-70 rounded-full "
+                                        />
+                                        <span className="absolute top-0 right-0 text-4xl text-pink-400">
+                                            <MdAddPhotoAlternate />
+                                        </span>
+                                    </div>
+                                )}
                                 <div className="w-full">
                                     <p>Server Name</p>
                                     <input
@@ -254,7 +295,12 @@ function settings() {
                                     />
                                 </div>
                             </div>
-                            <button type="submit">Submit</button>
+                            <button
+                                type="submit"
+                                className="ml-auto mr-5 mt-2 px-4 py-1 rounded-xl bg-blue-400 cursor-pointer"
+                            >
+                                Submit
+                            </button>
                         </form>
                         <h1 className="text-md md:text-lg lg:text-2xl text-amber-200">
                             Invite a new Member
