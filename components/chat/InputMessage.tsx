@@ -15,10 +15,18 @@ import { getDownloadURL, ref, uploadString } from "firebase/storage";
 function InputMessage({ channelName }: { channelName: string }) {
     const [message, setMessage] = useState("");
     const router = useRouter();
-    const server = router.query["server"] as string;
-    const channel = router.query["channel"] as string;
+    const [server, setServer] = useState("");
+    const [channel, setChannel] = useState("");
+    useEffect(() => {
+        if (!router.isReady) return;
+        // codes using router.query
+        setServer(router.query["server"] as string);
+        setChannel(router.query["channel"] as string);
+    }, [router.isReady, router.query["server"], router.query["channel"]]);
+
     useEffect(() => {
         setMessage("");
+        setImageToPost(null);
     }, [server, channel]);
 
     const fileRef = useRef<HTMLInputElement>(null);
@@ -27,7 +35,7 @@ function InputMessage({ channelName }: { channelName: string }) {
     const [user] = useAuthState(auth);
     const sendMessage = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (message.length < 1 || !imageToPost) return;
+        if (message.length < 1 && !imageToPost) return;
         const msg = message;
         setMessage("");
         const img = imageToPost;

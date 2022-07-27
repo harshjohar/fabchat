@@ -1,46 +1,15 @@
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../redux/user/userSlice";
 import { auth, db } from "../../serverless/firebase";
+import { userToRedux } from "../../utils/functions";
 
 function Loading() {
-    const dispatch = useDispatch();
-    const [user] = useAuthState(auth);
-    const router = useRouter();
-
-    useEffect(() => {
-        if (user) {
-            dispatch(
-                setUser({
-                    uid: user.uid,
-                    email: user.email,
-                    photoURL: user.photoURL,
-                    displayName: user.displayName,
-                })
-            );
-            setDoc(
-                doc(db, "users", user.uid),
-                {
-                    email: user.email,
-                    photoURL: user.photoURL,
-                    displayName: user.displayName,
-                    lastSeen: serverTimestamp(),
-                },
-                {
-                    merge: true,
-                }
-            ).then(()=>{
-                router.push("channels/@me");
-            });
-        }
-        else {
-            router.push('/login')
-        }
-    }, [user]);
+    userToRedux()
     return (
         <div className="h-screen w-screen grid place-items-center">
             <Head>

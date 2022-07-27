@@ -18,7 +18,7 @@ function Members() {
     const members = serverData?.data()?.members;
 
     return (
-        <div>
+        <div className="overflow-y-scroll scrollbar-hide">
             <p className="font-semibold py-2 px-1">Members - {members?.length}</p>
             {members?.map((member: any, i: number) => {
                 return <Member key={i} memberId={member} />;
