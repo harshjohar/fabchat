@@ -1,5 +1,5 @@
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
-import { NextRouter, useRouter } from "next/router"
+import { NextRouter, useRouter } from "next/router";
 import { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useDispatch } from "react-redux";
@@ -7,8 +7,8 @@ import { setUser } from "../redux/user/userSlice";
 import { auth, db } from "../serverless/firebase";
 
 export const redirectToLogin = (router: NextRouter) => {
-    router.push('/login')
-}
+    router.push("/login");
+};
 
 export const userToRedux = () => {
     const dispatch = useDispatch();
@@ -36,12 +36,16 @@ export const userToRedux = () => {
                 {
                     merge: true,
                 }
-            ).then(()=>{
+            ).then(() => {
                 router.push("/channels/@me");
             });
-        }
-        else {
-            router.push('/login')
+        } else {
+            router.push("/login");
         }
     }, [user]);
-}
+};
+
+export const getRecipientEmail = (users: any, userLoggedIn: any) =>
+    users?.filter(
+        (userToFilter: any) => userToFilter !== userLoggedIn?.email
+    )[0];

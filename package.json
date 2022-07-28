@@ -10,6 +10,7 @@
     "@emotion/styled": "^11.9.3",
     "@mui/material": "^5.9.2",
     "@reduxjs/toolkit": "^1.8.3",
+    "email-validator": "^2.0.4",
     "firebase": "^9.9.1",
     "next": "latest",
     "react": "18.1.0",

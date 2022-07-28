@@ -8,7 +8,7 @@ function index() {
     const server = router.query["server"];
     return (
         <PageLayout>
-            <div>
+            <div className="">
                 <Head>
                     <title>{server}</title>
                 </Head>

@@ -15,18 +15,16 @@ import { getDownloadURL, ref, uploadString } from "firebase/storage";
 function InputMessage({ channelName }: { channelName: string }) {
     const [message, setMessage] = useState("");
     const router = useRouter();
-    const [server, setServer] = useState("");
     const [channel, setChannel] = useState("");
     useEffect(() => {
         if (!router.isReady) return;
-        setServer(router.query["server"] as string);
         setChannel(router.query["channel"] as string);
-    }, [router.isReady, router.query["server"], router.query["channel"]]);
+    }, [router.isReady, router.query["channel"]]);
 
     useEffect(() => {
         setMessage("");
         setImageToPost(null);
-    }, [server, channel]);
+    }, [channel]);
 
     const fileRef = useRef<HTMLInputElement>(null);
     const [imageToPost, setImageToPost] = useState<any>(null);
@@ -40,17 +38,14 @@ function InputMessage({ channelName }: { channelName: string }) {
         const img = imageToPost;
         removeImage();
 
-        addDoc(
-            collection(db, "servers", server, "channels", channel, "messages"),
-            {
-                message: msg,
-                user: user?.uid,
-                timestamp: serverTimestamp(),
-                displayName: user?.displayName,
-                photoURL: user?.photoURL,
-                image: imageToPost ? "/images/dummy.jpeg" : "",
-            }
-        )
+        addDoc(collection(db, "directs", channel, "messages"), {
+            message: msg,
+            user: user?.uid,
+            timestamp: serverTimestamp(),
+            displayName: user?.displayName,
+            photoURL: user?.photoURL,
+            image: imageToPost ? "/images/dummy.jpeg" : "",
+        })
             .then((addedDoc) => {
                 if (imageToPost) {
                     const storageRef = ref(storage, `messages/${addedDoc.id}`);
@@ -87,7 +82,7 @@ function InputMessage({ channelName }: { channelName: string }) {
         setImageToPost(null);
     };
     return (
-        <div className="absolute bottom-1 left-4 flex flex-col w-[90%] rounded-lg bg-gray-500 px-2 py-1">
+        <div className="absolute bottom-1 left-4 flex flex-col w-[90%] rounded-lg bg-fabchat-primary px-2 py-1">
             {imageToPost && (
                 <div className="flex items-center space-x-4">
                     <AiOutlineClose
@@ -116,7 +111,7 @@ function InputMessage({ channelName }: { channelName: string }) {
                     <input
                         type="text"
                         className="w-4/5 outline-none rounded-lg bg-transparent px-2 py-1 text-white placeholder:text-white"
-                        placeholder={`Message #${channelName}`}
+                        placeholder={`Message @${channelName}`}
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
                     />
