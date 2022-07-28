@@ -28,13 +28,11 @@ function Channel() {
     const [channelDoc] = useDocument(docRef);
     const channelData = channelDoc?.data();
 
-    
-
     return (
         <PageLayout>
             <div className="h-full w-full flex bg-fabchat-hoverBackground flex-col relative">
                 <Head>
-                    <title>{channel}</title>
+                    <title>{getRecipientEmail(channelData?.["users"], user)}</title>
                 </Head>
                 <p className="px-3 py-3 shadow-3xl space-x-2 font-semibold text-fabchat-text cursor-pointer flex items-center">
                     <span className="mr-2 text-2xl">@</span>
