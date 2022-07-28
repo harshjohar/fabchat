@@ -33,7 +33,7 @@ function Messages() {
         endRef?.current?.scrollIntoView();
     }, [messages]);
     return (
-        <div className="h-[85%] overflow-y-scroll scrollbar-hide bg-blue-100">
+        <div className="h-[82%] overflow-y-scroll scrollbar-hide bg-fabchat-hoverBackground space-y-2">
             {messages?.docs?.map((doc) => {
                 const { message, timestamp, displayName, photoURL, image } =
                     doc.data();

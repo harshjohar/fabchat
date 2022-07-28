@@ -13,8 +13,7 @@ function ChannelBar() {
     useEffect(() => {
         if (!router.isReady) return;
         setServer(router.query["server"] as string);
-    }, [router.isReady, router.query["server"], router.query["channel"]]
-    );
+    }, [router.isReady, router.query["server"], router.query["channel"]]);
 
     const [serverDoc] = useDocument(doc(db, "servers", server || "a"));
     const [channelDocs] = useCollection(
@@ -34,15 +33,17 @@ function ChannelBar() {
     };
 
     const openSettings = () => {
-        router.push(`/channels/${server}/settings`)
-    }
+        router.push(`/channels/${server}/settings`);
+    };
     return (
-        <div className="h-full w-full bg-pink-500 relative">
-            <p className="px-3 py-4 shadow-xl font-bold cursor-pointer hover:bg-pink-600 relative" onClick={openSettings}>
-                {serverDoc?.data()?.["name"] as string}
+        <div className="h-full w-full bg-fabchat-background relative">
+            <p className="px-3 py-4 shadow-xl font-bold cursor-pointer hover:bg-fabchat-hoverBackground text-fabchat-text relative">
+                <span onClick={openSettings}>
+                    {serverDoc?.data()?.["name"] as string}
+                </span>
                 <span
                     onClick={addChannel}
-                    className="absolute right-4 text-2xl my-auto top-3 hover:text-white"
+                    className="absolute right-4 text-2xl my-auto top-3 hover:text-fabchat-primary"
                 >
                     +
                 </span>
@@ -72,7 +73,6 @@ function ChannelIcon({ channel }: { channel: Channel }) {
     const [server, setServer] = useState("");
     useEffect(() => {
         if (!router.isReady) return;
-        // codes using router.query
         setServer(router.query["server"] as string);
     }, [router.isReady]);
 
@@ -81,12 +81,12 @@ function ChannelIcon({ channel }: { channel: Channel }) {
     };
     return (
         <div
-            className="cursor-pointer hover:bg-pink-400 rounded-lg px-2 py-1"
+            className="cursor-pointer hover:bg-fabchat-hoverPrimary rounded-lg px-2 py-1"
             onClick={toggleChannel}
         >
             <div className="text-base">
                 {channel.type === "text" ? (
-                    <p className="fomt-semibold flex items-center">
+                    <p className="fomt-semibold flex items-center text-fabchat-text">
                         <span className="mr-4 font-bold text-lg">#</span>
                         {channel.name}
                     </p>

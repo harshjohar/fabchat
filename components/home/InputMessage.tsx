@@ -19,7 +19,6 @@ function InputMessage({ channelName }: { channelName: string }) {
     const [channel, setChannel] = useState("");
     useEffect(() => {
         if (!router.isReady) return;
-        // codes using router.query
         setServer(router.query["server"] as string);
         setChannel(router.query["channel"] as string);
     }, [router.isReady, router.query["server"], router.query["channel"]]);
@@ -88,7 +87,7 @@ function InputMessage({ channelName }: { channelName: string }) {
         setImageToPost(null);
     };
     return (
-        <div className="absolute bottom-3 left-4 flex flex-col w-[90%] rounded-lg px-2 py-1 bg-fabchat-primary">
+        <div className="absolute bottom-1 left-4 flex flex-col w-[90%] rounded-lg bg-gray-500 px-2 py-1">
             {imageToPost && (
                 <div className="flex items-center space-x-4">
                     <AiOutlineClose

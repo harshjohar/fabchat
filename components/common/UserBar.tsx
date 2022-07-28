@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../redux/user/userSlice";
@@ -7,14 +8,16 @@ function UserBar() {
     return (
         <div className="absolute bottom-3 left-2">
             <div className="flex space-x-2">
-                <img
+                <Image
                     src={user.photoURL as string}
                     alt={user.displayName as string}
+                    height={50}
+                    width={50}
                     className="rounded-full h-12 w-12 cursor-pointer hover:opacity-90"
                 />
                 <div>
                     <p className="font-bold text-white truncate">
-                        {user.displayName as string}
+                        {user?.displayName as string}
                     </p>
                     <p>Online</p>
                 </div>

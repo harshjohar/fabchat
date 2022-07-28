@@ -37,7 +37,7 @@ export const userToRedux = () => {
                     merge: true,
                 }
             ).then(()=>{
-                router.push("channels/@me");
+                router.push("/channels/@me");
             });
         }
         else {

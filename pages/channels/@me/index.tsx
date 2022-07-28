@@ -24,13 +24,12 @@ function index() {
     );
     return (
         <PageLayout>
-            <div>
+            <div className="bg-fabchat-hoverBackground h-full w-full">
                 <Head>
                     <title>Fabchat</title>
                 </Head>
-                <p>{user.displayName}</p>
-                <div className="p-4">
-                    <h1 className="my-4 text-xl font-bold">Invitations</h1>
+                <div className="p-4 text-fabchat-text">
+                    <h1 className="my-4 text-2xl font-bold text-fabchat-subtext uppercase">Invitations</h1>
                     {invites?.docs?.length ? (
                         invites?.docs?.map((doc) => <InviteServer doc={doc} key={doc.id} />)
                     ) : (

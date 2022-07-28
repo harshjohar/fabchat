@@ -8,17 +8,17 @@ module.exports = {
     extend: {
       colors: {
         fabchat: {
-          primary: '#36393f',
-          blurple: '#5865F2',
-          green: '#57F287',
-          yellow: '#FEE75C',
-          fuchsia: '#EB459E',
-          red: '#ED4245',
+          primary: 'rgb(33, 72, 220)',
+          background: 'rgba(1, 25, 54, 1)',
+          hoverBackground: '#0A214D',
+          hoverPrimary: '#2B6CB0',
+          hoverSecondary: '#f5f5f5',
+          text: '#fafafa',
           white: '#ffffff',
           black: '#000000',
-          sidebarleft: '#202225',
+          inputBackground: 'linear-gradient(0deg, rgb(15, 33, 73), rgba(15, 33, 73, 1))',
           topLeft: '#2f3136',
-          selectedOption: 'rgba(79,84,92,0.32)',
+          subtext: 'rgba(172, 181, 199, 1)',
         },
       },
       animation: {
