@@ -1,3 +1,5 @@
+const { url } = require('inspector');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -5,6 +7,9 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
+    backgroundImage: {
+      'landing-background': "url('/images/background-landing.jpeg')"
+    },
     extend: {
       colors: {
         fabchat: {
