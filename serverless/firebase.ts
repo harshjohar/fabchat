@@ -4,19 +4,19 @@ import { getFirestore } from 'firebase/firestore'
 import {getStorage} from 'firebase/storage'
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDrjbIjCNL3yaS2jWndpPcoG6SDxtkSy9c",
-  authDomain: "fabchat-9e526.firebaseapp.com",
-  projectId: "fabchat-9e526",
-  storageBucket: "fabchat-9e526.appspot.com",
-  messagingSenderId: "270106605678",
-  appId: "1:270106605678:web:36b20acfc54e9a3c678e7f"
+  apiKey: process.env.NEXT_PUBLIC_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_APP_ID
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig)
-const auth = getAuth()
-const db = getFirestore()
+const auth = getAuth(app)
+const db = getFirestore(app)
 const provider = new GoogleAuthProvider()
-const storage = getStorage()
+const storage = getStorage(app)
 
 export { auth, db, provider, storage }
