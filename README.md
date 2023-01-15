@@ -1,5 +1,7 @@
 # FabChat
 
+<img src="./demo/4.png" height="200">
+
 Fabchat is a VoIP and instant messaging social platform. Create servers, create channels, talk on voice chat/real time messaging.
 
 Built using NEXTjs, Firebase, twilio and Expressjs.
@@ -19,7 +21,7 @@ Built using NEXTjs, Firebase, twilio and Expressjs.
     -   Voice chat
     -   Text chat
 
-## Implementation
+<!-- ## Implementation
 
 Features are implemented using the following technologies
 
@@ -31,7 +33,7 @@ These are stored inside the firebase firestore database.
 
 Firestore database is a real time databse provided by firebase(google). Users can send images or text in the messages.
 
-Users can also text single users(direct messaging) on this platform.
+Users can also text single users(direct messaging) on this platform. -->
 
 <!-- ### VOIP
 
@@ -40,19 +42,57 @@ Users can have voice chats in the servers(supports upto 25 people at once in a c
 ## Contribute
 
 Follow these steps to contribute.
-1. Fork the repository.
-2. Clone the forked repo, using `git fork https://github.com/<username>/fabchat`.
-3. Run `cd fabchat && yarn install`
-    - if `yarn` is not installed, install it using `npm i -g yarn`
-4. Create a project on firebase, and create a web app inside it.
-5. Add the environment variables by creating a `.env.local` file, by copying all keys from `.env.example` and taking values from the firebase configuration.
-6. To start project locally, run `yarn dev`.
 
-GOODLUCK!
+### Fork the repository.
 
-## Snapshots
+Fork the repository to your own account.
 
-<img src="./demo/4.png">
-<img src="./demo/1.png">
-<img src="./demo/2.png">
-<img src="./demo/3.png">
+### Clone the forked repo
+
+Clone the forked repo to your local machine using the following command.
+
+```bash
+git fork https://github.com/<username>/fabchat
+```
+
+### Local Setup
+
+Run these command to install dependencies.
+
+```bash
+cd fabchat && yarn install
+```
+
+-   If yarn is not installed, install it using
+
+```bash
+npm i -g yarn
+```
+
+-   In UNIX/LINUX machines
+
+    ```bash
+    sudo npm i -g yarn
+    ```
+
+### Firebase setup
+
+Create a project on firebase, and create a web app inside it. And configure the following
+
+-   Firebase Auth [link](https://firebase.google.com/docs/auth/web/google-signin)
+-   Firestore database [link](https://firebase.google.com/docs/firestore/quickstart#web-version-9_1)
+-   Firebase storage [link](https://firebase.google.com/docs/storage/web/start)
+
+-   Firebase webapp setup [link](https://firebase.google.com/docs/web/setup)
+
+### Environment variables
+
+Create `.env.local` file, by copying all keys from `.env.example` and taking values from the firebase configuration.
+
+### Start locally, run
+
+```bash
+yarn dev
+```
+
+Happy Contributing!
