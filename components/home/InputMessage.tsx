@@ -111,7 +111,7 @@ function InputMessage({ channelName }: { channelName: string }) {
                     <input
                         type="text"
                         className="w-4/5 outline-none rounded-lg bg-transparent px-2 py-1 text-white placeholder:text-white"
-                        placeholder={`Message @${channelName}`}
+                        placeholder={`Send Message to @${channelName}`}
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
                     />

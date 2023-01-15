@@ -19,7 +19,7 @@ function UserBar() {
                     <p className="font-bold text-white truncate">
                         {user?.displayName as string}
                     </p>
-                    <p>Online</p>
+                    <p className="text-fabchat-subtext">Online</p>
                 </div>
             </div>
         </div>

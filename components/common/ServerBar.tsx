@@ -88,7 +88,7 @@ function ServerBar() {
             })}
             <div
                 onClick={addServer}
-                className="bg-blue-400 h-[3.5rem] w-[3.5rem] rounded-full hover:rounded-xl cursor-pointer mx-auto flex items-center justify-center font-semibold text-xl"
+                className="bg-fabchat-addServerBtn h-[3.5rem] w-[3.5rem] rounded-full hover:rounded-xl cursor-pointer mx-auto flex items-center justify-center font-semibold text-xl"
             >
                 +
             </div>
