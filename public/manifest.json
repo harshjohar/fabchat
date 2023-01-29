@@ -1,0 +1,16 @@
+{
+	"theme_color" : "#191e29",
+	"background_color" : "#132d46",
+	"display" : "standalone",
+	"start_url" : "/app",
+	"name" : "FabChat | Your place to hangout",
+	"short_name" : "FabChat",
+	"description" : "A place where you can be a part of a global art community, a gaming community, or a school club, where you can spend time with only a small group of buddies, a location that makes it simple to socialise more frequently and converse every day.",
+	"icons": [
+		{
+			"src": "/images/logo.png",
+			"sizes": "500x500",
+			"type": "image/png"
+		}
+	]
+}
