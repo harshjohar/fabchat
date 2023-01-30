@@ -8,6 +8,7 @@ import {
     setDoc,
     where,
 } from "firebase/firestore";
+import { NextSeo } from 'next-seo';
 import { useRouter } from "next/router";
 import React, { FormEvent, useEffect, useRef, useState } from "react";
 import { MdAddPhotoAlternate, MdDelete } from "react-icons/md";
@@ -158,9 +159,9 @@ function settings() {
     if (user.uid !== serverData?.["owner"]) {
         return (
             <div className="h-screen w-screen overflow-hidden flex bg-fabchat-background justify-end relative">
-                <Head>
-                    <title>{serverData?.["name"]}</title>
-                </Head>
+                <NextSeo
+                    title={`${serverData?.["name"]}`}
+                />
                 <div
                     className="absolute top-16 right-16 cursor-pointer text-3xl"
                     onClick={() =>
@@ -206,9 +207,9 @@ function settings() {
 
     return (
         <div className="h-screen w-screen overflow-hidden flex bg-fabchat-background justify-end relative">
-            <Head>
-                <title>{serverData?.["name"]}</title>
-            </Head>
+            <NextSeo
+                    title={`${serverData?.["name"]}`}
+                />
             <div
                 className="absolute top-16 right-16 cursor-pointer text-3xl"
                 onClick={() =>

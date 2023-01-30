@@ -1,4 +1,4 @@
-import Head from "next/head";
+import { NextSeo } from 'next-seo';
 import { useRouter } from "next/router";
 import React from "react";
 import PageLayout from "../../../components/Layout/PageLayout";
@@ -9,9 +9,9 @@ function index() {
     return (
         <PageLayout>
             <div className="">
-                <Head>
-                    <title>{server}</title>
-                </Head>
+                <NextSeo
+                    title={`${server}`}
+                />
             </div>
         </PageLayout>
     );

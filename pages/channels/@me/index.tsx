@@ -1,5 +1,5 @@
 import { collection, query, where } from "firebase/firestore";
-import Head from "next/head";
+import { NextSeo } from 'next-seo';
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useCollection } from "react-firebase-hooks/firestore";
@@ -24,10 +24,10 @@ function index() {
     );
     return (
         <PageLayout>
+            <NextSeo
+                title="Fabchat"
+            />
             <div className="bg-fabchat-hoverBackground h-full w-full">
-                <Head>
-                    <title>Fabchat</title>
-                </Head>
                 <div className="p-4 text-fabchat-text">
                     <h1 className="my-4 text-2xl font-bold text-fabchat-subtext uppercase">Invitations</h1>
                     {invites?.docs?.length ? (

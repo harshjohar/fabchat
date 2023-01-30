@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { auth, provider } from "../../serverless/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import Head from "next/head";
+import { NextSeo } from 'next-seo';
 
 function Login() {
     const signIn = () => {
@@ -21,9 +21,9 @@ function Login() {
 
     return (
         <div className="h-screen w-screen bg-fabchat-background grid place-items-center">
-            <Head>
-                <title>Fabchat</title>
-            </Head>
+            <NextSeo
+                title="Fabchat"
+            />
             <div className="h-[40%] w-[40%] rounded-xl bg-fabchat-hoverPrimary p-4 flex flex-col items-center justify-evenly">
                 <div>
                     <h1 className="text-4xl text-center font-serif text-fabchat-text">
