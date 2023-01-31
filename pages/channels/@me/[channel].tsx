@@ -1,5 +1,5 @@
 import { doc } from "firebase/firestore";
-import Head from "next/head";
+import { NextSeo } from 'next-seo';
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useDocument } from "react-firebase-hooks/firestore";
@@ -31,9 +31,9 @@ function Channel() {
     return (
         <PageLayout>
             <div className="h-full w-full flex bg-fabchat-hoverBackground flex-col relative">
-                <Head>
-                    <title>{getRecipientEmail(channelData?.["users"], user)}</title>
-                </Head>
+                <NextSeo
+                    title={`${getRecipientEmail(channelData?.["users"], user)}`}
+                />
                 <p className="px-3 py-3 shadow-3xl space-x-2 font-semibold text-fabchat-text cursor-pointer flex items-center">
                     <span className="mr-2 text-2xl">@</span>
                     <span>

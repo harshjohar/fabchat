@@ -1,12 +1,13 @@
-import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 import Lottie from "react-lottie-player";
 import offline from "../public/animations/offline.json"
 
 const Fallback = () => (
     <div className="h-screen w-screen flex flex-col justify-center items-center overflow-hidden">
-        <Head>
-            <title>Fabchat |  Connect to internet</title>
-        </Head>
+        <NextSeo
+            title='Fabchat |  Connect to internet'  
+            titleTemplate='%s |  Connect to internet'  
+        />
         <div className="font-bold text-[30px]">You are offline</div>
         <Lottie
             loop
