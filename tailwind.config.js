@@ -42,6 +42,9 @@ module.exports = {
       },
       animation: {
         'loading-spin': 'spin 2s ease-in-out infinite',
+      },
+      fontFamily: {
+        frederikaone: ["FrederikaOne", "sans-serif"]
       }
     },
   },

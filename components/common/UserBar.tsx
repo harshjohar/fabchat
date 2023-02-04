@@ -16,10 +16,10 @@ function UserBar() {
                     className="rounded-full h-12 w-12 cursor-pointer hover:opacity-90"
                 />
                 <div>
-                    <p className="font-bold text-white truncate">
+                    <div className="font-bold text-white truncate">
                         {user?.displayName as string}
-                    </p>
-                    <p className="text-fabchat-subtext">Online</p>
+                    </div>
+                    <div className="text-fabchat-subtext">Online</div>
                 </div>
             </div>
         </div>

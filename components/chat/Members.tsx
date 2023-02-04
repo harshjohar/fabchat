@@ -19,7 +19,7 @@ function Members() {
 
     return (
         <div className="overflow-y-scroll scrollbar-hide">
-            <p className="font-semibold py-2 px-1 text-fabchat-subtext">Members - {members?.length}</p>
+            <div className="font-semibold py-2 px-1 text-fabchat-subtext">Members - {members?.length}</div>
             {members?.map((member: any, i: number) => {
                 return <Member key={i} memberId={member} />;
             })}

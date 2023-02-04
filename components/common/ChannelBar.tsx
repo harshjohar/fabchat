@@ -39,7 +39,7 @@ function ChannelBar() {
   };
   return (
     <div className="h-full w-full bg-fabchat-background relative">
-      <p className="px-3 py-4 shadow-xl font-bold cursor-pointer hover:bg-fabchat-hoverBackground text-fabchat-text relative">
+      <div className="px-3 py-4 shadow-xl font-bold cursor-pointer hover:bg-fabchat-hoverBackground text-fabchat-text relative">
         <span onClick={openSettings}>
           {serverDoc?.data()?.["name"] as string}
         </span>
@@ -49,7 +49,7 @@ function ChannelBar() {
         >
           +
         </span>
-      </p>
+      </div>
       <div className="mt-3 px-3 space-y-2">
         {channels?.map((channel) => {
           const data = channel.data();
@@ -88,10 +88,10 @@ function ChannelIcon({ channel }: { channel: Channel }) {
     >
       <div className="text-base">
         {channel.type === "text" ? (
-          <p className="fomt-semibold flex items-center text-fabchat-text">
+          <div className="font-semibold flex items-center text-fabchat-text">
             <span className="mr-4 font-bold text-lg">#</span>
             {channel.name}
-          </p>
+          </div>
         ) : (
           <GiSpeaker />
         )}

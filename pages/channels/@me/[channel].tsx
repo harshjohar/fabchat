@@ -34,12 +34,12 @@ function Channel() {
                 <NextSeo
                     title={`${getRecipientEmail(channelData?.["users"], user)}`}
                 />
-                <p className="px-3 py-3 shadow-3xl space-x-2 font-semibold text-fabchat-text cursor-pointer flex items-center">
+                <div className="px-3 py-3 shadow-3xl space-x-2 font-semibold text-fabchat-text cursor-pointer flex items-center">
                     <span className="mr-2 text-2xl">@</span>
                     <span>
                         {getRecipientEmail(channelData?.["users"], user)}
                     </span>
-                </p>
+                </div>
                 <Messages />
                 <InputMessage channelName={getRecipientEmail(channelData?.["users"], user)} />
             </div>
