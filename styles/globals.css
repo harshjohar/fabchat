@@ -1,3 +1,184 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: FrederikaOne;
+    src: url("../public/fonts/FredokaOne-Regular.ttf");
+}
+
+@layer components {
+
+    h1 {
+        display: block;
+        font-size: 2em;
+        margin: 0.67em 0;
+        font-weight: bold;
+    }
+
+    h2 {
+        display: block;
+        font-size: 1.5em;
+        margin: 0.83em 0;
+        font-weight: bold;
+    }
+
+    h3 {
+        display: block;
+        font-size: 1.17em;
+        margin: 1em 0;
+        font-weight: bold;
+    }
+
+    h4 {
+        display: block;
+        font-size: 1em;
+        margin: 1.33em 0;
+        font-weight: bold;
+    }
+
+    h5 {
+        display: block;
+        font-size: .83em;
+        margin: 1.67em 0;
+        font-weight: bold;
+    }
+
+    h6 {
+        display: block;
+        font-size: .67em;
+        margin: 2.33em 0;
+        font-weight: bold;
+    }
+
+    h1:after, h2:after {
+        content: "";
+        display: block;
+        position: relative;
+        top: 0.33em;
+        border-bottom: 1px solid hsla(0, 0%, 50%, .33);
+    }
+
+    ul {
+        display: block;
+        list-style-type: disc;
+        margin: 1em 0 1em;
+        padding-left: 40px;
+    }
+
+    li {
+        display: list-item;
+    }
+
+    .message a {
+        color: #0c93e4;
+    }
+
+    .message a:focus, .message a:hover {
+        text-decoration: underline;
+    }
+
+    ol {
+        display: block;
+        list-style-type: decimal;
+        margin: 1em 0;
+        padding-left: 40px;
+    }
+
+    p {
+        display: block;
+        margin: 0.8em 0;
+    }
+
+    pre {
+        display: block;
+        font-family: monospace;
+        white-space: pre;
+        margin: 1em 0;
+    }
+
+    code {
+        background-color: rgba(73, 73, 73, 0.8);
+        border-radius: 3px;
+        padding: 2px 4px;
+    }
+
+    pre > code {
+        background-color: rgba(0, 0, 0, .5);
+        display: block;
+        padding: 0.5em;
+        -webkit-text-size-adjust: none;
+        overflow-x: auto;
+        white-space: pre;
+    }
+
+    code *, pre *, samp * {
+        font-size: inherit;
+    }
+
+    blockquote {
+        display: block;
+        margin: 1em 40px;
+        opacity: 0.8;
+        padding-left: 1.5em;
+        border-left: 5px solid rgba(155, 155, 155);
+    }
+
+    blockquote, dl, ol, pre, ul {
+        margin: 1.2em 0;
+    }
+
+    u {
+        text-decoration: underline;
+    }
+
+    table {
+        display: table;
+        border-collapse: collapse;
+        box-sizing: border-box;
+        text-indent: initial;
+        border: 2px solid #dcdcdc;
+    }
+
+    thead {
+        display: table-header-group;
+        vertical-align: middle;
+        border-color: inherit;
+    }
+
+    tfoot {
+        display: table-footer-group;
+        vertical-align: middle;
+        border-color: inherit;
+    }
+
+    tr {
+        display: table-row;
+        vertical-align: inherit;
+        border-color: inherit;
+    }
+
+    th {
+        display: table-cell;
+        vertical-align: inherit;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    td {
+        display: table-cell;
+        vertical-align: inherit;
+    }
+
+    td, th {
+        border-right: 2px solid #dcdcdc;
+        border-bottom: 2px solid #dcdcdc;
+        padding: 8px 12px;
+    }
+
+    tbody {
+        display: table-row-group;
+        vertical-align: middle;
+        border-color: inherit;
+    }
+}

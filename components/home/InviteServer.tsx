@@ -49,8 +49,8 @@ export const InviteServer = (props: inviteDoc) => {
                 className="rounded-full h-20 w-20 object-cover"
             /> : <UserDp name={serverName} />}
             <div>
-                <p className="text-lg cursor-default font-bold">{serverName}</p>
-                <p className="text-sm">{serverDesc}</p>
+                <div className="text-lg cursor-default font-bold">{serverName}</div>
+                <div className="text-sm">{serverDesc}</div>
                 <div className="space-x-3 mt-2">
                     <button
                         onClick={acceptInvite}

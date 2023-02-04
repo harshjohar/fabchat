@@ -1,5 +1,5 @@
 import { NextSeo } from 'next-seo';
-import React, { useState } from "react";
+import React from "react";
 import { userToRedux } from "../../utils/functions";
 
 function Loading() {
@@ -11,10 +11,10 @@ function Loading() {
             />
             <div className="h-2/3 w-1/3 bg-fabchat-hoverBackground shadow-xl rounded-xl grid place-items-center">
                 <img
-                    src="/images/Fabchat.png"
+                    src="/images/fabchat.png"
                     className="h-52 w-52 object-cover rounded-full"
                 />
-                <p className="text-white font-bold text-3xl">Loading...</p>
+                <div className="text-white font-bold text-3xl">Loading...</div>
             </div>
         </div>
     );

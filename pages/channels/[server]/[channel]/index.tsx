@@ -45,10 +45,10 @@ function Channel() {
                 />
 
                 <div className="bg-fabchat-hoverBackground h-full w-3/4 relative">
-                    <p className="px-3 py-3 shadow-3xl font-semibold text-fabchat-text cursor-pointer flex items-center">
+                    <div className="px-3 py-3 shadow-3xl font-semibold text-fabchat-text cursor-pointer flex items-center">
                         <span className="mr-2 text-2xl">#</span>
                         {channelData?.["name"]}
-                    </p>
+                    </div>
                     <Messages />
                     <InputMessage channelName={channelData?.["name"]} />
                 </div>

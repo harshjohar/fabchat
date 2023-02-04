@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import {MarkdownText} from "./MarkdownText";
 interface message {
     message: string;
     timestamp: any;
@@ -10,8 +11,8 @@ interface message {
 
 export const Message = (props: message) => {
     return (
-        <div className="flex hover:bg-fabchat-hoverPrimary py-2 items-center relative">
-            <div className="flex flex-col items-start justify-start p-2 cursor-pointer">
+        <div className="flex hover:bg-fabchat-hoverPrimary py-2 relative">
+            <div className="flex flex-col items-start justify-start px-2 cursor-pointer">
                 {props.photoUrl ? (
                     <Image
                         src={props.photoUrl}
@@ -32,7 +33,7 @@ export const Message = (props: message) => {
             </div>
 
             <div className="ml-3">
-                <p className="text-md cursor-pointer font-semibold text-fabchat-text">
+                <div className="text-md cursor-pointer font-semibold text-fabchat-text">
                     {props.displayName}
                     <span className="ml-4 cursor-default text-xs font-normal text-gray-400 hover:no-underline">
                         {props.timestamp &&
@@ -40,7 +41,7 @@ export const Message = (props: message) => {
                                 props.timestamp?.toDate()
                             ).toLocaleString()}
                     </span>
-                </p>
+                </div>
 
                 {props.postImage && (
                     <div>
@@ -54,7 +55,9 @@ export const Message = (props: message) => {
                     </div>
                 )}
 
-                <p className="text-fabchat-text">{props.message}</p>
+                <MarkdownText className="text-fabchat-text message">
+                    {props.message}
+                </MarkdownText>
             </div>
         </div>
     );

@@ -33,10 +33,10 @@ function index() {
                     {invites?.docs?.length ? (
                         invites?.docs?.map((doc) => <InviteServer doc={doc} key={doc.id} />)
                     ) : (
-                        <p>
-                            You have no inivitation from any server, Join a
+                        <div>
+                            You have no invitation from any server, Join a
                             community NOW!
-                        </p>
+                        </div>
                     )}
                 </div>
             </div>

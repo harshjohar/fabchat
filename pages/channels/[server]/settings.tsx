@@ -11,11 +11,10 @@ import {
 import { NextSeo } from 'next-seo';
 import { useRouter } from "next/router";
 import React, { FormEvent, useEffect, useRef, useState } from "react";
-import { MdAddPhotoAlternate, MdDelete } from "react-icons/md";
+import { MdDelete } from "react-icons/md";
 import { db, storage } from "../../../serverless/firebase";
 import { AiFillCloseCircle, AiOutlineClose } from "react-icons/ai";
 import { useDocument } from "react-firebase-hooks/firestore";
-import Head from "next/head";
 import Members from "../../../components/chat/Members";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../../redux/user/userSlice";
@@ -173,24 +172,24 @@ function settings() {
                     <AiFillCloseCircle className="text-fabchat-primary hover:text-white" />
                 </div>
                 <div className="relative w-1/3 bg-fabchat-hoverBackground mt-32 flex flex-col space-y-4 items-end px-4 py-4">
-                    <p
+                    <div
                         onClick={() => setPage("overview")}
                         className="bg-fabchat-primary text-right px-20 py-2 w-2/3 text-lg cursor-pointer rounded-lg hover:bg-blue-500 text-fabchat-text"
                     >
                         Overview
-                    </p>
-                    <p
+                    </div>
+                    <div
                         onClick={() => setPage("members")}
                         className="bg-fabchat-primary text-right px-20 py-2 w-2/3 text-lg cursor-pointer rounded-lg hover:bg-blue-500 text-fabchat-text"
                     >
                         Members
-                    </p>
+                    </div>
                 </div>
                 <div className="w-2/3 bg-fabchat-hoverPrimary mt-32">
                     {page === "overview" ? (
-                        <p className="text-3xl text-amber-200 text-center py-10">
+                        <div className="text-3xl text-amber-200 text-center py-10">
                             Contact Server Owner for this
-                        </p>
+                        </div>
                     ) : (
                         <div className="">
                             <Members />
@@ -221,25 +220,25 @@ function settings() {
                 <AiFillCloseCircle className="text-fabchat-primary hover:text-white" />
             </div>
             <div className="relative w-1/3 bg-fabchat-hoverBackground mt-32 flex flex-col space-y-4 items-end px-4 py-4">
-                <p
+                <div
                     onClick={() => setPage("overview")}
                     className="bg-fabchat-primary text-right px-20 py-2 w-2/3 text-lg cursor-pointer rounded-lg hover:bg-blue-500"
                 >
                     Overview
-                </p>
-                <p
+                </div>
+                <div
                     onClick={() => setPage("members")}
                     className="bg-fabchat-primary text-right px-20 py-2 w-2/3 text-lg cursor-pointer rounded-lg hover:bg-blue-500"
                 >
                     Members
-                </p>
-                <p
+                </div>
+                <div
                     onClick={deleteServer}
                     className="absolute bottom-10 bg-fabchat-hoverPrimary text-right px-20 py-2 w-2/3 text-lg cursor-pointer rounded-lg hover:bg-red-500 flex justify-end space-x-3"
                 >
                     <MdDelete className="text-2xl" />
                     <span>Delete Server</span>
-                </p>
+                </div>
             </div>
 
             <input type="file" hidden onChange={addImageToFile} ref={fileRef} />
@@ -289,9 +288,9 @@ function settings() {
                                     </div>
                                 )}
                                 <div className="w-full">
-                                    <p className="text-fabchat-white">
+                                    <div className="text-fabchat-white">
                                         Server Name
-                                    </p>
+                                    </div>
                                     <input
                                         type="text"
                                         placeholder={serverData["name"]}

@@ -27,7 +27,7 @@ export const Member = (props: MemberProp) => {
                 ) : (
                     <UserDp name={user?.displayName} />
                 ))}
-            <p className="mx-3 text-fabchat-text">{user?.displayName}</p>
+            <div className="mx-3 text-fabchat-text">{user?.displayName}</div>
         </div>
     );
 };

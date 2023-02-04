@@ -5,12 +5,13 @@ import {
     setDoc,
 } from "firebase/firestore";
 import { useRouter } from "next/router";
-import React, { FormEvent, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db, storage } from "../../serverless/firebase";
 import { AiOutlineClose } from "react-icons/ai";
 import { IoIosAddCircle } from "react-icons/io";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
+import {TextareaAutosize} from "@mui/material";
 
 function InputMessage({ channelName }: { channelName: string }) {
     const [message, setMessage] = useState("");
@@ -33,8 +34,8 @@ function InputMessage({ channelName }: { channelName: string }) {
     const [imageToPost, setImageToPost] = useState<any>(null);
 
     const [user] = useAuthState(auth);
-    const sendMessage = (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+
+    const sendMessage = () => {
         if (message.length < 1 && !imageToPost) return;
         const msg = message;
         setMessage("");
@@ -113,13 +114,25 @@ function InputMessage({ channelName }: { channelName: string }) {
                             : console.log("first")
                     }
                 />
-                <form className="w-full" onSubmit={(e) => sendMessage(e)}>
-                    <input
-                        type="text"
-                        className="w-4/5 outline-none rounded-lg bg-transparent px-2 py-1 text-white placeholder:text-white"
+                <form
+                    className="w-full"
+                    onSubmit={(e) => {
+                        e.preventDefault()
+                        sendMessage()
+                    }}
+                >
+                    <TextareaAutosize
+                        className="resize-none w-[90%] outline-none rounded-lg bg-transparent px-2 py-1 text-white placeholder:text-white"
                         placeholder={`Message #${channelName}`}
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
+                        onKeyDown={(e) => {
+                            if(!e.shiftKey && e.key == "Enter") {
+                                e.preventDefault()
+                                sendMessage()
+                            }
+                        }}
+                        maxRows={6}
                     />
                     <button type="submit" className="hidden">
                         Send
