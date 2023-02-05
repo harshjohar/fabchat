@@ -81,10 +81,17 @@ function ChannelIcon({ channel }: { channel: Channel }) {
   const toggleChannel = () => {
     router.push(`/channels/${server}/${channel.id}`);
   };
+
+  let parts = router.asPath.split("/");
+  let channelpart = parts[3];
+  // console.log(channelpart)
+
   return (
     <div
-      className="cursor-pointer hover:bg-fabchat-hoverPrimary rounded-lg px-2 py-1"
+      className={(channelpart==channel.id) ? "bg-blue-500 rounded-lg px-2 py-1" : "cursor-pointer hover:bg-fabchat-hoverPrimary rounded-lg px-2 py-1"}
       onClick={toggleChannel}
+      // className="cursor-pointer hover:bg-fabchat-hoverPrimary rounded-lg px-2 py-1"
+      // onClick={toggleChannel}
     >
       <div className="text-base">
         {channel.type === "text" ? (
