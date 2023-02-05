@@ -3,13 +3,13 @@ import { getAuth, GoogleAuthProvider } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
 import {getStorage} from 'firebase/storage'
 
-const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_API_KEY,
-  authDomain: process.env.NEXT_PUBLIC_AUTH_DOMAIN,
-  projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
-  storageBucket: process.env.NEXT_PUBLIC_STORAGE_BUCKET,
-  messagingSenderId: process.env.NEXT_PUBLIC_MESSAGING_SENDER_ID,
-  appId: process.env.NEXT_PUBLIC_APP_ID
+const firebaseConfig = { 
+  apiKey: "AIzaSyDYDZqTPkl83Of0jYBXcjppz-scHJD6DAM",
+  authDomain: "nashe-6fd0f.firebaseapp.com",
+  projectId: "nashe-6fd0f",
+  storageBucket: "nashe-6fd0f.appspot.com",
+  messagingSenderId: "1009663622847",
+  appId: "1:1009663622847:web:69a54907dd85925008900a"
 };
 
 // Initialize Firebase
