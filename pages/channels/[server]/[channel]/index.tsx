@@ -1,5 +1,6 @@
 import { doc } from "firebase/firestore";
 import { NextSeo } from 'next-seo';
+import { Suspense } from "react";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useDocument } from "react-firebase-hooks/firestore";
@@ -12,7 +13,7 @@ import { BiHelpCircle } from "react-icons/bi";
 import InputMessage from "../../../../components/chat/InputMessage";
 import Messages from "../../../../components/chat/Messages";
 import Members from "../../../../components/chat/Members";
-
+// import { Loader } from "../../../../components/Loader";
 function Channel() {
     const user = useSelector(selectUser);
     const router = useRouter();
@@ -43,6 +44,7 @@ function Channel() {
                 <NextSeo
                     title={`${channelData ? channelData["name"] : "Discord"}`}
                 />
+                  
 
                 <div className="bg-fabchat-hoverBackground h-full w-3/4 relative">
                     <div className="px-3 py-3 shadow-3xl font-semibold text-fabchat-text cursor-pointer flex items-center">
@@ -50,8 +52,10 @@ function Channel() {
                         {channelData?.["name"]}
                     </div>
                     <Messages />
+
                     <InputMessage channelName={channelData?.["name"]} />
                 </div>
+                    
                 <div className="bg-fabchat-background w-1/4">
                     <div className="justify-between px-3 py-3 shadow-xl font-semibold text-blue-900 cursor-pointer flex items-center">
                         <input

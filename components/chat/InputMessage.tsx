@@ -123,7 +123,7 @@ function InputMessage({ channelName }: { channelName: string }) {
                 >
                     <TextareaAutosize
                         className="resize-none w-[90%] outline-none rounded-lg bg-transparent px-2 py-1 text-white placeholder:text-white"
-                        placeholder={`Message #${channelName}`}
+                        placeholder={`Message #${channelName||''}`}
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
                         onKeyDown={(e) => {
