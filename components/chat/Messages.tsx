@@ -39,9 +39,9 @@ function Messages() {
         endRef?.current?.scrollIntoView();
     }, [messages,!loading]);
     return (
-        <div>
+          <div className="h-[82%] overflow-y-scroll scrollbar-hide bg-fabchat-hoverBackground space-y-2">
         {loading ?
-        <div >
+     
         <SkeletonTheme baseColor="grey" highlightColor="white">
             <div className="flex">
                 <div className="m-5">
@@ -86,9 +86,9 @@ function Messages() {
         </div>
         </div>
         </SkeletonTheme>
-       </div>
-        : <div className="h-[82%] overflow-y-scroll scrollbar-hide bg-fabchat-hoverBackground space-y-2">
-        
+     
+        : 
+        <>
         {messages?.docs?.map((doc) => {
             const { message, timestamp, displayName, photoURL, image } =
                 doc.data();
@@ -104,7 +104,7 @@ function Messages() {
             );
         })}
         <div ref={endRef} />
-    </div>}
+      </>}
        
     </div>
     );
