@@ -7,6 +7,19 @@
     src: url("../public/fonts/FredokaOne-Regular.ttf");
 }
 
+@font-face {
+  font-family: 'Londrina Solid';
+  font-style: normal;
+  font-weight: normal;
+  src: url('../public/assets/LondrinaSolid-Regular.ttf') format('woff2');
+}
+@font-face {
+  font-family: 'Londrina Thin';
+  font-style: normal;
+  font-weight: normal;
+  src: url('../public/assets/LondrinaSolid-Thin.ttf') format('woff2');
+}
+
 @layer components {
 
     h1 {
@@ -51,7 +64,7 @@
         font-weight: bold;
     }
 
-    h1:after, h2:after {
+     h2:after {
         content: "";
         display: block;
         position: relative;

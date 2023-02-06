@@ -1,4 +1,6 @@
+const { color } = require('@mui/system');
 const { url } = require('inspector');
+const colors= require("tailwindcss/colors")
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -8,7 +10,7 @@ module.exports = {
   ],
   theme: {
     backgroundImage: {
-      'landing-background': "url('/images/background-landing.jpeg')"
+      'landing-background': "url('/images/background.png')"
     },
     extend: {
       colors: {
@@ -38,13 +40,15 @@ module.exports = {
           inputBackground: 'linear-gradient(0deg, rgb(15, 33, 73), rgba(15, 33, 73, 1))',
           topLeft: '#2f3136',
           subtext: 'rgba(172, 181, 199, 1)',
-        },
+        }
       },
       animation: {
         'loading-spin': 'spin 2s ease-in-out infinite',
       },
       fontFamily: {
-        frederikaone: ["FrederikaOne", "sans-serif"]
+        frederikaone: ["FrederikaOne", "sans-serif"],
+        Londrina: "'Londrina Solid', cursive" ,
+        LondrinaThin: "'Londrina Thin', cursive",
       }
     },
   },
