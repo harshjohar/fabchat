@@ -6,6 +6,15 @@
     font-family: FrederikaOne;
     src: url("../public/fonts/FredokaOne-Regular.ttf");
 }
+@font-face {
+    font-family: "Itim";
+    src: url("../public/fonts/Itim-Regular.ttf");
+}
+
+@font-face {
+    font-family: "SourceSansPro";
+    src: url("../public/fonts/SourceSansPro-Regular.ttf");
+}
 
 @layer components {
 
