@@ -54,8 +54,7 @@ export const Message = (props: message) => {
                         />
                     </div>
                 )}
-
-                <MarkdownText className="text-fabchat-text message">
+                <MarkdownText className="text-fabchat-text message max-w-screen-md">
                     {props.message}
                 </MarkdownText>
             </div>
