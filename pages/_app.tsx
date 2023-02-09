@@ -6,14 +6,15 @@ import { selectUser } from "../redux/user/userSlice";
 import { useRouter } from "next/router";
 import SEO from '../next-seo.config';
 import { DefaultSeo } from 'next-seo';
+import { wrapper } from "../redux/store";
 
 function Fabchat({ Component, pageProps }: AppProps) {
     return (
-        <Provider store={store}>
+        <>
             <DefaultSeo {...SEO} />
             <Component {...pageProps} />
-        </Provider>
+        </>
     );
 }
 
-export default Fabchat;
+export default wrapper.withRedux(Fabchat);
