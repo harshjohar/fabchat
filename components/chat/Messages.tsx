@@ -8,7 +8,7 @@ import { Message } from "./Message";
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
-function Messages() {
+function Messages({setReplyMessage}: {setReplyMessage: React.Dispatch<React.SetStateAction<{id: string, name: string} | null>>}) {
     const router = useRouter();
     const [loader,setLoader]=useState(false);
     const [server, setServer] = useState("");
@@ -90,16 +90,19 @@ function Messages() {
         : 
         <>
         {messages?.docs?.map((doc) => {
-            const { message, timestamp, displayName, photoURL, image } =
+            const { message, timestamp, displayName, photoURL, image, replyTo } =
                 doc.data();
             return (
                 <Message
+                    path={doc.ref.path}
                     key={doc.id}
                     message={message}
                     timestamp={timestamp}
                     displayName={displayName}
                     photoUrl={photoURL}
                     postImage={image}
+                    replyTo={replyTo}
+                    setReplyMessage={setReplyMessage}
                 />
             );
         })}
