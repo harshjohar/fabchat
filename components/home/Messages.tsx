@@ -5,7 +5,7 @@ import { useCollection } from "react-firebase-hooks/firestore";
 import { db } from "../../serverless/firebase";
 import { Message } from "../chat/Message";
 
-function Messages() {
+function Messages({setReplyMessage}: {setReplyMessage: React.Dispatch<React.SetStateAction<{id: string, name: string} | null>>}) {
     const router = useRouter();
     const [channel, setChannel] = useState("");
     useEffect(() => {
@@ -25,16 +25,19 @@ function Messages() {
         <div className="h-[82%] overflow-y-scroll scrollbar-hide bg-fabchat-hoverBackground space-y-2">
           
             {messages?.docs?.map((doc) => {
-                const { message, timestamp, displayName, photoURL, image } =
+                const { message, timestamp, displayName, photoURL, image, replyTo } =
                     doc.data();
                 return (
                     <Message
+                        path={doc.ref.path}
                         key={doc.id}
                         message={message}
                         timestamp={timestamp}
                         displayName={displayName}
                         photoUrl={photoURL}
                         postImage={image}
+                        replyTo={replyTo}
+                        setReplyMessage={setReplyMessage}
                     />
                 );
             })}

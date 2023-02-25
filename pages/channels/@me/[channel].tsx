@@ -27,6 +27,7 @@ function Channel() {
     const docRef = doc(db, "directs", channel || "a");
     const [channelDoc] = useDocument(docRef);
     const channelData = channelDoc?.data();
+    const [replyMessage, setReplyMessage] = useState<{id: string, name: string} | null>(null)
 
     return (
         <PageLayout>
@@ -40,8 +41,12 @@ function Channel() {
                         {getRecipientEmail(channelData?.["users"], user)}
                     </span>
                 </div>
-                <Messages />
-                <InputMessage channelName={getRecipientEmail(channelData?.["users"], user)} />
+                <Messages setReplyMessage={setReplyMessage} />
+                <InputMessage
+                    channelName={getRecipientEmail(channelData?.["users"], user)}
+                    replyMessage={replyMessage}
+                    setReplyMessage={setReplyMessage}
+                />
             </div>
         </PageLayout>
     );

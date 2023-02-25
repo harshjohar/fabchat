@@ -1,6 +1,5 @@
 import { doc } from "firebase/firestore";
 import { NextSeo } from 'next-seo';
-import { Suspense } from "react";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useDocument } from "react-firebase-hooks/firestore";
@@ -19,6 +18,7 @@ function Channel() {
     const router = useRouter();
     const [server, setServer] = useState("");
     const [channel, setChannel] = useState("");
+    const [replyMessage, setReplyMessage] = useState<{id: string, name: string} | null>(null)
     useEffect(() => {
         if (!router.isReady) return;
         setServer(router.query["server"] as string);
@@ -51,9 +51,15 @@ function Channel() {
                         <span className="mr-2 text-2xl">#</span>
                         {channelData?.["name"]}
                     </div>
-                    <Messages />
+                    <Messages
+                        setReplyMessage={setReplyMessage}
+                    />
 
-                    <InputMessage channelName={channelData?.["name"]} />
+                    <InputMessage
+                        channelName={channelData?.["name"]}
+                        replyMessage={replyMessage}
+                        setReplyMessage={setReplyMessage}
+                    />
                 </div>
                     
                 <div className="bg-fabchat-background w-1/4">

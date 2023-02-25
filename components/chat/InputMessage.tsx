@@ -11,9 +11,20 @@ import { auth, db, storage } from "../../serverless/firebase";
 import { AiOutlineClose } from "react-icons/ai";
 import { IoIosAddCircle } from "react-icons/io";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
-import {TextareaAutosize} from "@mui/material";
+import {IconButton, TextareaAutosize, Tooltip} from "@mui/material";
+import {CgClose} from "react-icons/cg";
 
-function InputMessage({ channelName }: { channelName: string }) {
+function InputMessage(
+    {
+        channelName,
+        replyMessage,
+        setReplyMessage
+    }: {
+        channelName: string,
+        replyMessage: {id: string, name: string} | null,
+        setReplyMessage:  React.Dispatch<React.SetStateAction<{id: string, name: string} | null>>
+    }
+) {
     const [message, setMessage] = useState("");
     const router = useRouter();
     const [server, setServer] = useState("");
@@ -41,6 +52,8 @@ function InputMessage({ channelName }: { channelName: string }) {
         setMessage("");
         const img = imageToPost;
         removeImage();
+        const id = replyMessage ? replyMessage.id : null
+        setReplyMessage(null)
 
         addDoc(
             collection(db, "servers", server, "channels", channel, "messages"),
@@ -51,6 +64,7 @@ function InputMessage({ channelName }: { channelName: string }) {
                 displayName: user?.displayName,
                 photoURL: user?.photoURL,
                 image: imageToPost ? "/images/dummy.jpeg" : "",
+                replyTo: id
             }
         )
             .then((addedDoc) => {
@@ -90,6 +104,18 @@ function InputMessage({ channelName }: { channelName: string }) {
     };
     return (
         <div className="absolute bottom-3 left-4 flex flex-col w-[90%] rounded-lg px-2 py-1 bg-fabchat-primary">
+            {
+                replyMessage && (
+                    <div className="text-fabchat-text flex flex-row justify-between items-center">
+                        <div>Reply to <b>{replyMessage.name}</b></div>
+                        <Tooltip title="Remove reply" placement="top">
+                            <IconButton onClick={() => setReplyMessage(null)}>
+                                <CgClose color="white" />
+                            </IconButton>
+                        </Tooltip>
+                    </div>
+                )
+            }
             {imageToPost && (
                 <div className="flex items-center space-x-4">
                     <AiOutlineClose
